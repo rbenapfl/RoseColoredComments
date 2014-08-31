@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
-  commentGenerator.showComments();
+  urlFetcher.getUrl()
 });
 
+var urlFetcher = {
+  getUrl: function(){
+    $("body").append("hi")
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+      var url = tabs[0].url
+      commentGenerator.getComments(url);
+    })
+  }
+}
 var commentGenerator = {
 
-  showComments: function() {
-    var box = $('#commentBox')
-    box.innerText = "Hi"
-  }
-
-} 
-
-var commentFetcher = {
-  getYoutubeComments: function(){
-
+  getComments: function(url) {
+      $("body").append(url)
   }
 }

@@ -5,10 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
 var commentGenerator = {
 
   showComments: function() {
-    var box = document.getElementById('commentBox')
-    console.log("work")
-    console.log(box)
+    var box = $('#commentBox')
     box.innerText = "Hi"
   }
 
 } 
+
+var commentFetcher = {
+  getYoutubeComments: function(){
+
+  }
+}

@@ -38,6 +38,9 @@ var commentGenerator = {
 var commentParser = {
   init: function(responseObject) {
     var parsedArray = commentParser.extractComments(responseObject)
+    var sortedArray = wordFilter.filterBadComments(parsedArray)
+    commentAppender.appendComments(sortedArray)
+
   },
   extractComments: function(responseObject) {
     var commentArray = responseObject.feed.entry
@@ -48,7 +51,39 @@ var commentParser = {
       var authorLink = "http://www.youtube.com/profile_redirector/" + commentArray[i].yt$googlePlusUserId.$t
       parsedComments.push({commentContent:comment,authorUrl:authorLink,authorName:author})
     }
-    $('body').append(parsedComments[0].authorName)
     return parsedComments
   }
 }
+
+var commentAppender = {
+  appendComments: function(filteredArray) {
+    for (var i = 0;i<filteredArray.length;i++) {
+      var currentComment = filteredArray[i]
+      var commentText = currentComment.commentContent
+      var authorName = currentComment.authorName
+      var commentDiv = "<div class='comment'>" + commentText +"</br>" + "-" + authorName + "</div>"
+      $('#commentBox').append(commentDiv)
+    }
+  }
+}
+ var wordFilter = {
+  filterBadComments: function(parsedArray) {
+    var filteredArray = parsedArray
+    var badWordList = ["bad","pony","terrible","waste"]
+    for (var i = 0;i<filteredArray.length;i++) {
+      var string = filteredArray[i].commentContent
+      for (var y = 0;y<badWordList.length;y++){
+        var word = badWordList[y]
+        if (wordFilter.regexFilter(word,string)) {
+          filteredArray.splice(i,1)
+          i--
+          break
+        }
+      }
+    }
+    return filteredArray
+  },
+  regexFilter: function(word,string) {
+    return new RegExp( '\\b' + word + '\\b', 'i').test(string)
+  }
+ }

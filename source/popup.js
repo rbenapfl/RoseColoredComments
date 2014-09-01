@@ -38,16 +38,17 @@ var commentGenerator = {
 var commentParser = {
   init: function(responseObject) {
     var parsedArray = commentParser.extractComments(responseObject)
-    $('body').append(parsedArray[0].commentContent)
   },
   extractComments: function(responseObject) {
     var commentArray = responseObject.feed.entry
     var parsedComments = []
     for (var i = 0;i<commentArray.length;i++){
       var comment = commentArray[i].content.$t
+      var author = commentArray[i].author[0].name.$t
       var authorLink = "http://www.youtube.com/profile_redirector/" + commentArray[i].yt$googlePlusUserId.$t
-      parsedComments.push({commentContent:comment,authorUrl:authorLink})
+      parsedComments.push({commentContent:comment,authorUrl:authorLink,authorName:author})
     }
+    $('body').append(parsedComments[0].authorName)
     return parsedComments
   }
 }

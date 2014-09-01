@@ -4,30 +4,45 @@
     <title>Getting Started Extension's Popup</title>
     <style>
       body {
-        min-width: 357px;
+        min-width: 400px;
+        min-height: 400px;
+        max-height: 400px;
         overflow-x: hidden;
+        background-image: url('backgroundtexture.jpg');
+        background-repeat: repeat;
+      }
+      a {
+        font-size: 120%;
+      }
+      #title {
+        text-align: center;
+        font-size: 200%;
+        color:blue;
+        font-style: italic;
+        border-bottom: 20px;
       }
 
-      img {
-        margin: 5px;
-        border: 2px solid black;
-        vertical-align: middle;
-        width: 75px;
-        height: 75px;
+      .comment {
+        border: 1px solid;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 10px;
+        word-wrap: break-word;
+        background-color: #FFC266;
+        min-height: 40px;
+        max-width: 395px;
       }
     </style>
 
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
-     -->
     <script src="jquery-2.1.1.min.js"></script>
     <script src="popup.js"></script>
   </head>
   <body>
-    <div id="commentBox"></div>
+    <div id="title">Your Rose Colored Comments</div>
+    <div id="commentBox">
+      <div class="comment">afksadjfsdlkfjsadlkfjsdflkdsjflksdjflskdjfsdlkfjsdlkfjasdlkfjsdlfjsdlfkjsdlfkjsdflksdjflksdjflsdjflsdkfjsdlkfjsdlkfsjdlfksdjflsdjkflksadjflsdkfjsdlfkjsdlkfjsdflksdjflksdjflskj</div>
+      <div class="comment">Random Latin</div>
+    </div>
   </body>
 </html>
 

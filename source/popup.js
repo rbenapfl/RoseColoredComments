@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  BadWordList = ["bad","terrible","waste","shit"]
   urlFetcher.getUrl()
 })
 
@@ -69,11 +70,10 @@ var commentAppender = {
  var wordFilter = {
   filterBadComments: function(parsedArray) {
     var filteredArray = parsedArray
-    var badWordList = ["bad","pony","terrible","waste"]
     for (var i = 0;i<filteredArray.length;i++) {
       var string = filteredArray[i].commentContent
-      for (var y = 0;y<badWordList.length;y++){
-        var word = badWordList[y]
+      for (var y = 0;y<BadWordList.length;y++){
+        var word = BadWordList[y]
         if (wordFilter.regexFilter(word,string)) {
           filteredArray.splice(i,1)
           i--
